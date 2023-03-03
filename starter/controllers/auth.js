@@ -60,6 +60,16 @@ const updateUser = async (req, res) => {
   await user.save();
 
   const token = user.createJWT();
+
+  res.status(StatusCodes.OK).json({
+    user: {
+      email: user.email,
+      lastName: user.lastName,
+      location: user.location,
+      name: user.name,
+      token,
+    },
+  });
 };
 
 module.exports = {
